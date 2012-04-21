@@ -20,7 +20,7 @@ global $mainframe;
 $doc =& JFactory::getDocument();
 
 if (JFile::exists(JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'css'.DS.'k2_jlkusersview.css'))
-	$doc->addStyleSheet(JURI::base().'templates/'.$mainframe->getTemplate().'css/k2_jlkusersview.css');
+	$doc->addStyleSheet(JURI::base().'templates/'.$mainframe->getTemplate().'/css/k2_jlkusersview.css');
 else
 	$doc->addStyleSheet(JURI::base().'components/com_k2/css/k2_jlkusersview.css');
 
