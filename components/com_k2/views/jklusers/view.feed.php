@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.view');
 
-class K2ViewUsers extends JView {
+class K2ViewJlkUsers extends JView {
 
     function display($tpl = null) {
     
@@ -34,14 +34,14 @@ class K2ViewUsers extends JView {
 		$itemlistModel = &$this->getModel('itemlist');
 
         foreach ($k2Users as $k2User) {
-		//Get K2 user profile
-                $k2User->profile = $itemlistModel->getUserProfile($k2User->userID);
+			//Get K2 user profile
+            $k2User->profile = $itemlistModel->getUserProfile($k2User->userID);
 
-                //K2 User image
-                $k2User->avatar = K2HelperUtilities::getAvatar($k2User->userID, $k2User->email, $params->get('usersFeedImageWidth'));        
+            //K2 User image
+            $k2User->avatar = K2HelperUtilities::getAvatar($k2User->userID, $k2User->email, $params->get('usersFeedImageWidth'));        
 
-                //K2 User link
-                $k2User->link = JRoute::_(K2HelperRoute::getUserRoute($k2User->userID));
+            //K2 User link
+            $k2User->link = JRoute::_(K2HelperRoute::getUserRoute($k2User->userID));
 	
             $k2User = $model->prepareFeedUser($k2User);
             $k2User->name = $this->escape($k2User->name);

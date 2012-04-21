@@ -12,12 +12,12 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.view');
 
-class K2ViewUsers extends JView {
+class K2ViewJlkUsers extends JView {
 
     function display($tpl = null) {
     
 		global $mainframe;
-		sdjfksdjhfkjh();
+
 		$params = &JComponentHelper::getParams('com_k2');
 		$model = &$this->getModel('users');
 		$limitstart = JRequest::getInt('limitstart');
@@ -29,7 +29,7 @@ class K2ViewUsers extends JView {
 			
 			$indexLetters = explode(',',$params->get('indexLetters'));
 				
-			$firstLetters = K2HelperUsers::getFirstLetters($params);
+			$firstLetters = K2HelperJlkUsers::getFirstLetters($params);
 			
 			$alphaIndex = array();
 			
@@ -59,7 +59,7 @@ class K2ViewUsers extends JView {
 		}
 		
 		//Set layout
-		$this->setLayout('users');
+		$this->setLayout('jlkusers');
                 
 		//Set limit
 		$limit = $params->get('usersCount');
@@ -85,32 +85,28 @@ class K2ViewUsers extends JView {
        	
 		$itemlistModel = &$this->getModel('itemlist'); 
         
-		lisdkfjshdfk();
 		//Prepare users
-		if (count($k2Users)) {
-			foreach ($k2Users as & $k2User) {
-				//Get K2 user profile
-				$k2User->profile = $itemlistModel->getUserProfile($k2User->userID);
+		foreach ($k2Users as & $k2User) {
+			//Get K2 user profile
+			$k2User->profile = $itemlistModel->getUserProfile($k2User->userID);
 
-				//K2 User image
-				$k2User->avatar = K2HelperUtilities::getAvatar($k2User->userID, $k2User->email, $params->get('feedImageSize'));	
+			//K2 User image
+			$k2User->avatar = K2HelperUtilities::getAvatar($k2User->userID, $k2User->email, $params->get('feedImageSize'));	
 
-				//K2 User link
-				$k2User->link = JRoute::_(K2HelperRoute::getUserRoute($k2User->userID));
+			//K2 User link
+			$k2User->link = JRoute::_(K2HelperRoute::getUserRoute($k2User->userID));
 
-				//K2 User Nb Products
-				$k2User->nbPublishedItems = $model->getNbPublishedItems($k2User->userID); 
+			//K2 User Nb Products
+			$k2User->nbPublishedItems = $model->getNbPublishedItems($k2User->userID); 
 
-				//User K2 plugins
-				$k2User->event->K2UserDisplay = '';
-                	
-				if (is_object($k2User->profile) && $k2User->profile->id > 0) {
-
-					$dispatcher = &JDispatcher::getInstance();
-					JPluginHelper::importPlugin('k2');
-					$results = $dispatcher->trigger('onK2UserDisplay', array(&$k2User->profile, &$params, $limitstart));
-					$k2User->event->K2UserDisplay = trim(implode("\n", $results));
-				}
+			//User K2 plugins
+			$k2User->event->K2UserDisplay = '';
+            	
+			if (is_object($k2User->profile) && $k2User->profile->id > 0) {
+				$dispatcher = &JDispatcher::getInstance();
+				JPluginHelper::importPlugin('k2');
+				$results = $dispatcher->trigger('onK2UserDisplay', array(&$k2User->profile, &$params, $limitstart));
+				$k2User->event->K2UserDisplay = trim(implode("\n", $results));
 			}
 		}
 
