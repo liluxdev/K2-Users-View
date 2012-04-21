@@ -20,7 +20,7 @@ class K2ViewJlkUsers extends JView {
         $params = &JComponentHelper::getParams('com_k2');
         $document = &JFactory::getDocument();
         $limitstart = JRequest::getInt('limitstart');
-		$model = &$this->getModel('users');
+		$model = &$this->getModel('jlkusers');
 
         //Set title
         $title = $params->get('page_title');

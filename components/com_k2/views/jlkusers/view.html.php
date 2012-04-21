@@ -19,7 +19,7 @@ class K2ViewJlkUsers extends JView {
 		global $mainframe;
 
 		$params = &JComponentHelper::getParams('com_k2');
-		$model = &$this->getModel('users');
+		$model = &$this->getModel('jlkusers');
 		$limitstart = JRequest::getInt('limitstart');
 		$view = JRequest::getWord('view');
 		$user = & JFactory::getDBO();
