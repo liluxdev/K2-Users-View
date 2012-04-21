@@ -1,0 +1,12 @@
+/* Alpha Index */
+div.jlkUserListAlphaIndex {width:90%;margin:5px auto;padding:5px;background-color:#eee;border:1px solid #ccc;color:#666;text-align:center;}
+	span.firstLetter {margin:1px;padding:3px;}
+	span.firstLetter.active {}
+	span.firstLetter.selected {font-weight:bold;background-color:#ccc;}
+	span.firstLetter a {font-weight:bold;text-decoration:underline;}
+
+/* users view */
+div.jlkUsersView div.userContainer {float:left;}
+
+div.jlkUsersView div.userContainer div.userBlock {margin:4px;}
+
