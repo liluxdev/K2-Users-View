@@ -97,7 +97,8 @@ class K2ViewJlkUsers extends JView {
 			$k2User->link = JRoute::_(K2HelperRoute::getUserRoute($k2User->userID));
 
 			//K2 User Nb Products
-			$k2User->nbPublishedItems = $model->getNbPublishedItems($k2User->userID); 
+			if ($params->get('usersNbPublishedItems'))
+				$k2User->nbPublishedItems = $model->getNbPublishedItems($k2User->userID); 
 
 			//User K2 plugins
 			$k2User->event->K2UserDisplay = '';
